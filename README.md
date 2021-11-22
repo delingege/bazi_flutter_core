@@ -7,9 +7,11 @@
 ## 4.流月计算
 ## 5.流日计算
 ## 6.公农历转换
+
+# 农历转阳历
 ```
   Calendar _calendar = Calendar.getInstance();
-  var l = _calendar.Solar2Lunar(1990, 1, 1);
+  var l = _calendar.Solar2Lunar(2021, 11, 11); // [2021,10,7,false]
   ```
   
   
