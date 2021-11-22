@@ -7,3 +7,9 @@
 ## 4.流月计算
 ## 5.流日计算
 ## 6.公农历转换
+```
+  Calendar _calendar = Calendar.getInstance();
+  var l = _calendar.Solar2Lunar(1990, 1, 1);
+  ```
+  
+  
