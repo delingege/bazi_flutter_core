@@ -3,6 +3,11 @@
 # 用于计算八字的基础功能
 ## 1.天干地支计算
 ## 2.大运起盘
+```
+  Map bzInfo = _chinese.Fate(true, 1990, 1, 1, hour: 1);
+  _chinese.getFleetYear
+  print(bzInfo);
+  ```
 ## 3.流年计算
 ## 4.流月计算
 ## 5.流日计算
