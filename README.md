@@ -12,6 +12,7 @@
 ```
   Calendar _calendar = Calendar.getInstance();
   var l = _calendar.Solar2Lunar(2021, 11, 11); // [2021,10,7,false]
+  print(l);
   ```
 # 阳历转农历
 ```
