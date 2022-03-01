@@ -711,7 +711,7 @@ ZQAndSMandLunarMonthCode(int year) {
   var mc = {};
 
   var jd4zq = ZQSinceWinterSolstice(year);
-  debugPrint("jd4zq: $jd4zq");
+  // debugPrint("jd4zq: $jd4zq");
   var jd4sm = SMSinceWinterSolstice(year, jd4zq[0]);
   var yz = 0;
   if ((jd4zq[12] + 0.5).floor() >= (jd4sm[13] + 0.5).floor()) {
@@ -746,11 +746,11 @@ solar2lunar(int year, int month, int day) {
   if (!dateIsOk(year, month, day)) return null;
 
   var mData = ZQAndSMandLunarMonthCode(year);
-  debugPrint("mData: $mData");
+  // debugPrint("mData: $mData");
   var jd4sm = mData[1];
   var mc = mData[2];
 
-  var jd = solar2julian(year, month, day); //求出指定年月日之JD值
+  var jd = solar2julian(year, month, day, hour: 12); //求出指定年月日之JD值
   var mi = 0;
   var prev = 0;
   if (jd.floor() < (jd4sm[0] + 0.5).floor()) {
@@ -773,9 +773,9 @@ solar2lunar(int year, int month, int day) {
   month = ((mc[mi] + 10).floor() % 12) + 1;
   day = jd.floor() - (jd4sm[mi] + 0.5).floor() + 1;
 
-  var isLeap = (mc[mi] - (mc[mi]).floor()) * 2 + 1 != 1;
-  debugPrint("公历转农历: year: $year, month: $month, day: $day, isLeap: $isLeap");
-  return {"year": year, "month": month, "day": day, "isLeap": isLeap};
+  int isLeap = (mc[mi] - (mc[mi]).floor()).floor() * 2 + 1 != 1 ? 1 : 0;
+  // return {"year": year, "month": month, "day": day, "isLeap": isLeap};
+  return [year, month, day, isLeap];
 }
 
 lunar2solar(int year, int month, int day, {isLeap = false}) {
@@ -804,7 +804,7 @@ lunar2solar(int year, int month, int day, {isLeap = false}) {
 
   const nofd = [];
   for (int i = 0; i <= 14; i++) {
-    nofd[i] = (jd4sm[i + 1] + 0.5).floor() - (jd4sm[i] + 0.5).floor();
+    nofd.add((jd4sm[i + 1] + 0.5).floor() - (jd4sm[i] + 0.5).floor());
   }
 
   var jd;
@@ -829,7 +829,8 @@ solarMonthHasDays(int year, int month) {
   var ndf1 = -(year % 4 == 0 ? 1 : 0);
   var ndf2 = (((year % 400 == 0 ? 1 : 0) - (year % 100 == 0 ? 1 : 0)) == 1) && (year > 1582);
   var ndf = ndf1 + (ndf2 ? 1 : 0);
-  return 30 + (((month - 7.5).abs() + 0.5) % 2) - (month == 2 ? 1 : 0) * (2 + ndf);
+  double result = 30 + (((month - 7.5).abs() + 0.5) % 2) - (month == 2 ? 1 : 0) * (2 + ndf);
+  return result.toInt();
 }
 
 lunarMonthHasDays(int year, int month, bool isLeap) {
@@ -848,10 +849,10 @@ lunarMonthHasDays(int year, int month, bool isLeap) {
     }
   }
   month = month + 2;
-  const nofd = [];
+  List nofd = [];
   for (int i = 0; i <= 14; i++) {
-    nofd[i] = (jdnm[i + 1] + 0.5).floor() -
-        (jdnm[i] + 0.5).floor(); //每月天數,加0.5是因JD以正午起算
+    nofd.add((jdnm[i + 1] + 0.5).floor() -
+        (jdnm[i] + 0.5).floor()); //每月天數,加0.5是因JD以正午起算
   }
 
   if (isLeap) {

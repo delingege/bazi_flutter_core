@@ -43,8 +43,6 @@ class Solar extends Time {
     map["month"] = month;
     map["day"] = day;
     return map;
-    // static = static();
-    // return _instance.configure(static, compact('year', 'month', 'day'));
   }
 
   /**

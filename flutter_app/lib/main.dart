@@ -59,9 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // print(s);
     Chinese _chinese = Chinese.getInstance();
     _chinese.init();
-    // Map bzInfo = _chinese.Fate(true, 1990, 1, 1, hour: 1);
+    Map bzInfo = _chinese.Fate(true, 1990, 1, 1, hour: 1);
     // // _chinese.getFleetYear
-    // print(bzInfo);
+    print(bzInfo);
     // 流年
     // Map<String, dynamic> luckyInfoList = _chinese.getFleetYear(1999, 0);
     // print(luckyInfoList);
@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // Map<String, dynamic> luckyInfoList = _chinese.getFleetMonth(1999);
     // print(luckyInfoList);
     // 流日
-    Map<String, dynamic> luckyInfoList = _chinese.getFleetDay(1990, 2, 4, 6);
+    // var luckyInfoList = _chinese.getFleetDay(1990, 2, 4, 6);
     // print(luckyInfoList);
     // 2
     // 流时

@@ -45,8 +45,6 @@ class Lunar extends Time {
     map["month"] = month;
     map["day"] = day;
     return map;
-    // static = static();
-    // return configure(static, compact('year', 'month', 'day', 'isLeap'));
   }
 
   /**
